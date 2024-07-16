@@ -100,6 +100,11 @@ public class TableFoodBill {
         this.dinetableid = dinetableid;
     }
 
+    @Override
+    public String toString() {
+        return billid+"\t"+billuuid+'\t'+paystate+"\t"+foodid+"\t"+tableid+"\t"+ordernum+"\t"+ ordertime+"\t"+foodname+"\t价格为："+price;
+    }
+
 
 
 }

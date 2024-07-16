@@ -3,10 +3,8 @@ package view;
 import domain.Bill;
 import domain.DineTable;
 import domain.FoodMenu;
-import service.BillService;
-import service.DineTableSercice;
-import service.EmpService;
-import service.FoodMenuService;
+import domain.TableFoodBill;
+import service.*;
 import utils.JDBCUtilsByDruid;
 import utils.Utility;
 
@@ -29,6 +27,7 @@ public class View {
     DineTableSercice tableSercice = new DineTableSercice();
     FoodMenuService menuService = new FoodMenuService();
     BillService billService = new BillService();
+    TableFoodBillService tableFoodBillService = new TableFoodBillService();
     public void showTables(){
         List<DineTable> tablelist = tableSercice.getTableList();
         for (DineTable dineTable : tablelist) {
@@ -77,13 +76,14 @@ public class View {
     }
 
     public void showbills(int tableid){
-        List<Bill> billList = billService.getbillList(tableid);
-        if (billList.size()==0){
+        List<TableFoodBill> tableFoodBills = tableFoodBillService.getbillList(tableid);
+        if (tableFoodBills.size()==0){
             System.out.println("这张桌子没有账单");
             return;
         }
-        for (Bill bill : billList) {
-            System.out.println(bill);
+
+        for (TableFoodBill tableFoodBill : tableFoodBills) {
+            System.out.println(tableFoodBill);
         }
     }
     public void paybill(){
